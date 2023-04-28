@@ -4,4 +4,3 @@ repos:
     rev: v0.1.0
     hooks:
       - id: replace-jupyter-source-metadata
-        additional_dependencies: [yaml]

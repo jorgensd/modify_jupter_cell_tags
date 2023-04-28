@@ -1,7 +1,7 @@
 -   id: replace-jupyter-source-metadata
     name: replace-jupyter-source-metadata
     description: Add "source_hidden" and "outputs_hidden" tags to collapse jupyter cells in jupyterlab
-    entry: pare_yaml
+    entry: parse_yaml
     language: python
     language_version: python3
     files: '\.(ipynb)$'
