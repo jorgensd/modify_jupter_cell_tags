@@ -32,7 +32,7 @@ def format_notebook(filename:str)->int:
 
 
 
-def main(argv: None) -> int:
+def main(argv = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('filenames', nargs='*')
     args = parser.parse_args(argv)
