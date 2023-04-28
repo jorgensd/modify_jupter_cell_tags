@@ -9,7 +9,5 @@ description = "Replacing metadata for jupyter lab"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
-dependencies = [
-    'yaml'
-]
+
 
