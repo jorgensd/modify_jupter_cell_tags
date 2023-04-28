@@ -1,0 +1,7 @@
+repos:
+
+  - repo: https://github.com/jorgensd/test_local_precommit
+    rev: v0.1.0
+    hooks:
+      - id: replace-jupyter-source-metadata
+        additional_dependencies: [yaml]
