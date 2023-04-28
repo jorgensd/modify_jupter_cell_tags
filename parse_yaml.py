@@ -4,7 +4,7 @@ import json
 import argparse
 
 
-def format_notebook(filename:str)->int
+def format_notebook(filename:str)->int:
     keys = ["outputs_hidden", "source_hidden"]
     retv = 0
     with open(filename, 'r') as f:
@@ -26,13 +26,13 @@ def format_notebook(filename:str)->int
                             metadata["jupyter"] = {key: True}
                             retv = 1
     if retv == 1:
-        open(filename, 'w') as f:
+        with open(filename, 'w') as f:
             json.dump(data, f)
     return retv
 
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def main(argv: None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('filenames', nargs='*')
     args = parser.parse_args(argv)

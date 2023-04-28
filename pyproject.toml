@@ -11,3 +11,5 @@ requires-python = ">=3.8"
 license = {file = "LICENSE"}
 
 
+[project.scripts]
+pre-commit-config-jupyter-lab = "parse_yaml:main"
