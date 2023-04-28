@@ -1,0 +1,15 @@
+[project]
+name = "pre-commit-config-jupyter-lab"
+authors = [
+    {name = "Jørgen S. Dokken", email = "dokken@simula.no"},
+    {name = "Henrik N. Finsberg", email = "henriknf@simula.no"}
+    ]
+version = "0.1.0"
+description = "Replacing metadata for jupyter lab"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+dependencies = [
+    'yaml'
+]
+
