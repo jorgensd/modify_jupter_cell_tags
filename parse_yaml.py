@@ -1,32 +1,46 @@
+# Copyright (C) 2023 Jørgen S. Dokken and Benjamin Ragan-Kelley
+#
+# SPDX-License-Identifier:    MIT
+
 import argparse
+
 import nbformat
 
-def format_notebook(filename:str)->int:
-    keys = ["outputs_hidden", "source_hidden"]
+
+def format_notebook(filename: str) -> int:
+    """
+    Format a notebook with extra Jupyterlab tags, making it possible
+    to collapse input and output when opening the file
+    """
+    tag_map = {
+        "hide-input": "source_hidden",
+        "hide-output": "outputs_hidden",
+        "source_hidden": "source_hidden",
+        "outputs_hidden": "outputs_hidden",
+    }
     retv = 0
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         nb = nbformat.read(f, as_version=nbformat.NO_CONVERT)
 
     for cell in nb["cells"]:
         metadata = cell["metadata"]
-        print(metadata)
-        for key in keys:
+        for key in tag_map.keys():
             if key in metadata.get("tags", []):
                 jupyter_meta = metadata.setdefault("jupyter", {})
-                before = jupyter_meta.get(key, False)
+                before = jupyter_meta.get(tag_map[key], False)
                 if not before:
-                    jupyter_meta[key] = True
+                    jupyter_meta[tag_map[key]] = True
                     retv = 1
+
     if retv == 1:
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             nbformat.write(nb, f, version=nbformat.NO_CONVERT)
     return retv
 
 
-
-def main(argv = None) -> int:
+def main(argv=None) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument('filenames', nargs='*')
+    parser.add_argument("filenames", nargs="*")
     args = parser.parse_args(argv)
 
     retv = 0
@@ -35,5 +49,5 @@ def main(argv = None) -> int:
     return retv
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     raise SystemExit(main())
