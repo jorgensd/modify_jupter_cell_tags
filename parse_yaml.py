@@ -1,33 +1,25 @@
-
-
-import json 
 import argparse
-
+import nbformat
 
 def format_notebook(filename:str)->int:
     keys = ["outputs_hidden", "source_hidden"]
     retv = 0
     with open(filename, 'r') as f:
-        data = json.load(f)
-        for cell in data["cells"]:
-            metadata = cell["metadata"]
-            for key in keys:
-                if "tags" in metadata.keys():
-                    if key in metadata["tags"]:
-                        if "jupyter" in metadata.keys():
-                            if key in metadata["jupyter"].keys():
-                                if metadata["jupyter"][key] == False: 
-                                    metadata["jupyter"][key] = True 
-                                    retv = 1
-                            else:
-                                metadata["jupyter"][key] = True
-                                retv = 1
-                        else:
-                            metadata["jupyter"] = {key: True}
-                            retv = 1
+        nb = nbformat.read(f, as_version=nbformat.NO_CONVERT)
+
+    for cell in nb["cells"]:
+        metadata = cell["metadata"]
+        print(metadata)
+        for key in keys:
+            if key in metadata.get("tags", []):
+                jupyter_meta = metadata.setdefault("jupyter", {})
+                before = jupyter_meta.get(key, False)
+                if not before:
+                    jupyter_meta[key] = True
+                    retv = 1
     if retv == 1:
         with open(filename, 'w') as f:
-            json.dump(data, f)
+            nbformat.write(nb, f, version=nbformat.NO_CONVERT)
     return retv
 
 
