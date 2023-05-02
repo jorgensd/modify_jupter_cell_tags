@@ -9,7 +9,7 @@ description = "Replacing metadata for jupyter lab"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
-extra_dependencies=["nbformat"]
+dependencies=["nbformat"]
 
 [project.scripts]
 pre-commit-config-jupyter-lab = "parse_yaml:main"
