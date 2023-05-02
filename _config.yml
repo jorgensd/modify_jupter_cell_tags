@@ -1,0 +1,43 @@
+title: Pre-commit hooks
+author: Jørgen S. Dokken
+logo: "logo.png"
+copyright: "2023"
+only_build_toc_files : true
+
+
+-description: Developing tools for high performance computing, and applying novel simulation techniques to complex physical processes affecting human health.
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: cache
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/jorgensd/modify_jupter_cell_tags # Online location of your book
+  path_to_book: . # Optional path to your book, relative to the repository root
+  branch: main # Which branch of the repository should be used when creating links (optional)
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+
+launch_buttons:
+  notebook_interface: "jupyterlab"
+  binderhub_url: "https://mybinder.org"
+
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - linkify
+
+
+sphinx:
+  config:
+    html_last_updated_fmt: "%b %d, %Y"
+    suppress_warnings: ["bibtex.duplicate_citation"] # If the same paper is cited in multiple files
+
+  extra_extensions:
+    - "sphinx.ext.viewcode"
