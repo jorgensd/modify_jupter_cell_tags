@@ -1,5 +1,5 @@
-# test_local_precommit
-Test a local precommit hook for jupyter notebook.
+# Precommit hook for hiding cell input/output
+
 
 ## Installation
 
@@ -15,3 +15,6 @@ pre-commit autoupdate
 ```
 
 ## Run pre-commit
+```bash
+pre-commit run --all
+```
